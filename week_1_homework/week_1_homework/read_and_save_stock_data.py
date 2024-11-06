@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Nov  5 14:37:29 2018
+Modified on Sun Nov 3 21:09:00 2024
 
-@author: epinsky
+@author: ananyaps
 """
 # run this !pip install pandas_datareader
 from pandas_datareader import data as web
@@ -12,10 +13,9 @@ import yfinance as yf
 
 yf.pdr_override()
 
-
 def get_stock(ticker, start_date, end_date, s_window, l_window):
     try:
-        df = web.get_data_yahoo(ticker, start=start_date, end=end_date)
+        df = yf.download(ticker, start=start_date, end=end_date)
         df['Return'] = df['Adj Close'].pct_change()
         df['Return'].fillna(0, inplace=True)
         df['Date'] = df.index
@@ -48,7 +48,7 @@ def get_stock(ticker, start_date, end_date, s_window, l_window):
 
 here = os.path.abspath(__file__)
 input_dir = os.path.abspath(os.path.join(here, os.pardir))
-tickers = ['SPY']
+tickers = ['SBUX']
 for ticker in tickers:
     try:
         output_file = os.path.join(input_dir, ticker + '.csv')

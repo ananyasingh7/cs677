@@ -8,16 +8,16 @@ constructs a list of lines
 """
 import os
 
-ticker='SPY'
-input_dir = r'C:\Users\epinsky\bu\python\data_science_with_Python\datasets'
+ticker='SBUX'
+input_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), os.pardir))
 ticker_file = os.path.join(input_dir, ticker + '.csv')
 
-try:   
+try:
     with open(ticker_file) as f:
         lines = f.read().splitlines()
     print('opened file for ticker: ', ticker)
-    """    your code for assignment 1 goes here
-    """
+    for line in lines:
+        print(line)
     
 except Exception as e:
     print(e)
