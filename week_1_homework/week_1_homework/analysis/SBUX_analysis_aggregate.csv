@@ -1,6 +1,0 @@
-Day,mean_return,std_deviation_return,count_negative_returns,mean_negative_return,std_deviation_negative_return,count_positive_returns,mean_positive_return,std_deviation_positive_return
-Monday,-0.00017,0.01788,114,-0.01129,0.01684,122,0.01022,0.01139
-Tuesday,0.00212,0.01539,115,-0.00841,0.00819,143,0.01059,0.01457
-Wednesday,0.00058,0.01587,119,-0.01088,0.01381,138,0.01046,0.00967
-Thursday,0.00043,0.0163,121,-0.01055,0.01314,133,0.01042,0.01186
-Friday,0.00044,0.01965,127,-0.01122,0.01381,126,0.0122,0.01754
