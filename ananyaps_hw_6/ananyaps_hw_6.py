@@ -32,9 +32,9 @@ filtered_data.tail()
 #%%
 filtered_data.head()
 #%%
-print(f"Number of class 0 (originally class 1): {len(filtered_data[filtered_data['class'] == 0])}")
-print(f"Number of class 1 (originally class 3): {len(filtered_data[filtered_data['class'] == 1])}")
-print(f"Total samples: {len(filtered_data)}")
+print(f"# 0 (originally class 1): {len(filtered_data[filtered_data['class'] == 0])}")
+print(f"# 1 (originally class 3): {len(filtered_data[filtered_data['class'] == 1])}")
+print(f"Total #: {len(filtered_data)}")
 #%%
 from sklearn.model_selection import train_test_split
 
@@ -303,30 +303,33 @@ for point in X_test:
     predictions.append(nearest_cluster)
 
 predictions = np.array(predictions)
+#%% md
+# 
 #%%
 print(f"accuracy for all 3 classes: {accuracy_score(data['class'], predictions):.4f}")
 #%%
 
 #%%
-binary_mask = data['class'].isin([1, 3])
-binary_true = data.loc[binary_mask, 'class']
-binary_pred = predictions[binary_mask]
-
 # class 3 -> 1, class 1 -> 0
-binary_true = (binary_true == 3).astype(int)
-binary_pred = (binary_pred == 3).astype(int)
-
-print(f"Accuracy: {accuracy_score(binary_true, binary_pred):.4f}")
+print(f"Accuracy: {accuracy_score((data.loc[data['class'].isin([1, 3]), 'class'] == 3).astype(int), (predictions[data['class'].isin([1, 3])] == 3).astype(int)):.4f}")
 #%%
 print("Class 1 vs 3:")
-compute_metrics(binary_true, binary_pred)
+compute_metrics((data.loc[data['class'].isin([1, 3]), 'class'] == 3).astype(int), (predictions[data['class'].isin([1, 3])] == 3).astype(int))
 #%%
 print("Confusion Matrix:")
-print(confusion_matrix(binary_true, binary_pred))
+print(confusion_matrix((data.loc[data['class'].isin([1, 3]), 'class'] == 3).astype(int), (predictions[data['class'].isin([1, 3])] == 3).astype(int)))
 #%%
-new_k_means_classifier_metrics = compute_metrics(binary_true, binary_pred)
+new_k_means_classifier_metrics = compute_metrics((data.loc[data['class'].isin([1, 3]), 'class'] == 3).astype(int), (predictions[data['class'].isin([1, 3])] == 3).astype(int))
 new_k_means_classifier_metrics.index = ['New Classifier']
 
 all_metrics = pd.concat([all_metrics, new_k_means_classifier_metrics])
 all_metrics
+#%%
+
+#%%
+
+#%%
+
+#%%
+
 #%%
