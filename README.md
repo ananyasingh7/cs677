@@ -1,2 +1,2 @@
 # cs677
-data science/ml 
+data science/ml class 
